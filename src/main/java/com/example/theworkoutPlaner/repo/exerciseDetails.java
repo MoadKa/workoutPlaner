@@ -1,17 +1,14 @@
-package com.example.theworkoutPlaner;
-
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Repository;
+package com.example.theworkoutPlaner.repo;
 
 import java.util.ArrayList;
 
 public class exerciseDetails {
-    int id;
+    public int id; //change to private later
     String name;
     int sets; //int instead of String to consume less space;
     int reps;
 
-     static ArrayList<exerciseDetails> eList = new ArrayList<exerciseDetails>(); //static to use one list for multiple instances of the class
+     public static ArrayList<exerciseDetails> eList = new ArrayList<exerciseDetails>(); //static to use one list for multiple instances of the class
 
     public exerciseDetails(String name, int sets, int reps, int id)  {
         this.sets = sets;

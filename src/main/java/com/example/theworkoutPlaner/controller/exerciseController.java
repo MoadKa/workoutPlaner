@@ -1,10 +1,11 @@
-package com.example.theworkoutPlaner;
+package com.example.theworkoutPlaner.controller;
 
+import com.example.theworkoutPlaner.repo.exerciseDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
-import static com.example.theworkoutPlaner.exerciseDetails.eList;
+import static com.example.theworkoutPlaner.repo.exerciseDetails.eList;
 
 
 @RestController
