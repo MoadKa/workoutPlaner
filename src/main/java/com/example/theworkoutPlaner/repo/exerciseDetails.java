@@ -15,7 +15,7 @@ public class exerciseDetails {
     int sets; //int instead of String to consume less space;
     int reps;
 
-     public static ArrayList<exerciseDetails> eList = new ArrayList<exerciseDetails>(); //static to use one list for multiple instances of the class
+     
 
     private exerciseDetails(){}
 
