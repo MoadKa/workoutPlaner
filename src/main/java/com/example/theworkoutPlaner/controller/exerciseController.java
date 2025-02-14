@@ -7,7 +7,7 @@ import java.util.Optional;
 
 @RestController
 public class exerciseController  {
-    
+
     //This will serve as a basic Exercise Database in which the user can build his own workoutPlan
 
     private final ExerciseRepository exerciseRepository;
