@@ -1,47 +1,43 @@
 package com.example.theworkoutPlaner.controller;
-
-import com.example.theworkoutPlaner.repo.exerciseDetails;
+import com.example.theworkoutPlaner.repo.Exercise;
+import com.example.theworkoutPlaner.repo.ExerciseRepository;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-
-import static com.example.theworkoutPlaner.repo.exerciseDetails.eList;
+import java.util.Optional;
 
 
 @RestController
-public class exerciseController {
+public class exerciseController  {
+    
+    //This will serve as a basic Exercise Database in which the user can build his own workoutPlan
 
-    @PostMapping("/addExercise")
-    String insert(@RequestBody exerciseDetails eD){
+    private final ExerciseRepository exerciseRepository;
 
-    eList.add(new exerciseDetails(eD.getName(),eD.getSets(), eD.getReps(), eD.id));
-
-        return "Exercise successfully added.";
+    public exerciseController(ExerciseRepository exerciseRepository) {
+        this.exerciseRepository = exerciseRepository;
     }
-    @GetMapping("/api/viewExercise")
-    @ResponseBody
-    public ArrayList<exerciseDetails> listAllExercises(){
-        return eList;
+    @GetMapping("/Exercises")
+    public Iterable<Exercise> GetAllExercises(){
+       return exerciseRepository.findAll();
     }
-    @GetMapping("/api/viewExercise/{id}")
-    @ResponseBody
-    public exerciseDetails findExerciseById(@PathVariable int id){
-        for(exerciseDetails i : eList){
-            if(i.id == id) return i;
-        }
-        return null;
+    @GetMapping("/Exercises/{id}")
+    public Optional<Exercise> GetExercise(@PathVariable Integer id){
+        return exerciseRepository.findById(id);
     }
-    @PutMapping("update/{id}")
-    public String changeExercise(@PathVariable int id, @RequestBody exerciseDetails newE ){
-        eList.remove(findExerciseById(id));
-        eList.add(new exerciseDetails(newE.getName(), newE.getSets(), newE.getReps(), newE.id));
-        return "The Exercise with the id '" + id + "' was successfully Updated";
+    @PostMapping ("/Exercises")
+    public Exercise createExercise(@RequestBody Exercise exercise){
+        return exerciseRepository.save(exercise);
     }
-    @DeleteMapping("delete/{id}")
-    public String deleteExercise(@PathVariable int id){
-        eList.remove(findExerciseById(id));
-        return "Exercise with the id '" + id + "' was successfully deleted.";
+    @PutMapping("/Exercises")
+    public Exercise updateExercise(@RequestBody Exercise exercise){
+        exerciseRepository.deleteById(exercise.getId());
+        return exerciseRepository.save(exercise);
     }
 
+    @DeleteMapping("/Exercises/{id}")
+    public String deleteExerciseById(@PathVariable Integer id){
+         exerciseRepository.deleteById(id);
+         return "Exercise was removed successfully from the Database.";
+
+    }
 
 }

@@ -4,10 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-import java.util.ArrayList;
 @Entity
 @Table(name = "Exercises")
-public class exerciseDetails {
+public class Exercise {
 
     @Id
     private Integer id; //change to private later
@@ -15,11 +14,11 @@ public class exerciseDetails {
     int sets; //int instead of String to consume less space;
     int reps;
 
-     
 
-    private exerciseDetails(){}
 
-    public exerciseDetails(String name, int sets, int reps, Integer id)  {
+    private Exercise(){}
+
+    public Exercise(String name, int sets, int reps, Integer id)  {
         this.sets = sets;
         this.reps = reps;
         this.name = name;
