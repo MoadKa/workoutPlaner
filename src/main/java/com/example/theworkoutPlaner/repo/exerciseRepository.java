@@ -1,4 +1,6 @@
 package com.example.theworkoutPlaner.repo;
 
-public interface exerciseRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface exerciseRepository extends CrudRepository<exerciseDetails, Integer> {
 }
